@@ -1,47 +1,35 @@
-#build the model
-
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import roc_auc_score, mean_squared_error #c stat
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-#from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 import seaborn as sns
 from pandas.plotting import register_matplotlib_converters
 import pandas as pd
-from sklearn.model_selection import RandomizedSearchCV
-from sklearn.inspection import permutation_importance
-import shap
+
 
 # Number of trees in random forest
-n_estimators = [20]
+n_estimators = [int(x) for x in np.linspace(start = 200, stop = 3000, num = 10)]
 # Number of features to consider at every split
-max_features = [18]
-# Minimum number of samples required at each leaf node
-min_samples_leaf = [27]
-max_depth = [48]
-bootstrap = [True,False]
+max_features = ['auto', 'sqrt']
+# Maximum number of levels in tree
+max_depth = [int(x) for x in np.linspace(10, 200, num = 11)]
+max_depth.append(None)
+# Minimum number of samples required to split a node
+min_samples_split = [2, 4,6,8, 10,12,14,16,18,20]
+# Method of selecting samples for training each tree
+bootstrap = [True, False]
+#choose criterion
+criterion= ['mse','mae']
 # Create the random grid
 param_grid = {'n_estimators': n_estimators,
                'max_features': max_features,
                'max_depth':max_depth,
                'min_samples_leaf': min_samples_leaf,
-               'bootstrap': bootstrap}
-
-def evaluate(best_grid, X_test, Y_test):
-    predictions = best_grid.predict(X_test)
-    errors = abs(predictions - Y_test)
-    mape = 100 * np.mean(errors / Y_test)
-    accuracy = 100 - mape
-    print('Model Performance')
-    print('Average Error: {:0.4f} degrees.'.format(np.mean(errors)))
-    print('Accuracy = {:0.2f}%.'.format(accuracy))
-
-    return accuracy
-
-
+               'bootstrap': bootstrap,
+               }
 
 filepath = ('/home/s1987119/Diss_data/Final/Final_Products/final_outputs/')
 
@@ -70,45 +58,6 @@ print(best_grid)
 print('for all')
 
 
-
-
 mse = mean_squared_error(Y_test,Y_predict)
 rmse = np.sqrt(mse)
 print(rmse)
-
-
-
-#feature_importances = pd.DataFrame(rf_random.feature_importances_,
-#                                    index  =X_train.columns,columns=['importance']).sort_values('importance',ascending=False)
-
-#print(feature_importances)
-#feature_importances.to_csv(filepath+'feature_importance_envmonth.csv')
-
-
-
-#perm_importance  = permutation_importance(rf_fit,X_test,Y_test)
-
-#sorted_idx = perm_importance.importances_mean.argsort()
-
-#plt.barh(X_train.columns[sorted_idx], perm_importance.importances_mean[sorted_idx])
-#plt.show()
-
-#bestfit=grid.best_params_
-#bestfitscore = grid.best_score_
-#print(bestfit)
-#print(bestfitscore)
-
-#explainer  = shap.TreeExplainer(best_grid)
-#shap_values = explainer.shap_values(X_test)
-
-#vals= np.abs(shap_values).mean(0)
-#feature_importance = pd.DataFrame(list(zip(X_train.columns,vals)),columns=['col_name','feature_importance_vals'])
-#feature_importance.sort_values(by=['feature_importance_vals'],ascending=False,inplace=True)
-#feature_importance.head()
-#feature_importance.to_csv(filepath+'shaply_tuned_social.csv')
-
-#print(feature_importance)
-
-
-#shap.summary_plot(shap_values,X_test, plot_type='bar')
-#shap.summary_plot(shap_values,X_test, max_display = 30,  title='Shapley Values for Month Scale Environmental Factors', color_bar_label= 'Comparative Feature/Factor Value')
