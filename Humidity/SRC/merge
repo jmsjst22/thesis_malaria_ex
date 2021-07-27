@@ -1,0 +1,13 @@
+'''
+
+Intent
+
+Use in command shell equipped with Climate Data Operators library (installation is widely available).
+
+Input should have data that has been through all other levels of treatment including renaming, reindexing: file names will be identified by suffix.
+
+Output upon functionality is single netcdf file
+
+'''
+
+cdo mergetime /home/s1987119/Diss_data/Final/Humidity/Process/rc/*.nc /home/s1987119/Diss_data/Final/Final_Products/humidity_all.nc

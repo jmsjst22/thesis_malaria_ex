@@ -1,0 +1,57 @@
+#build the model
+
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import roc_auc_score, mean_squared_error #c stat
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+#from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import train_test_split
+import seaborn as sns
+from pandas.plotting import register_matplotlib_converters
+import pandas as pd
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.inspection import permutation_importance
+import shap
+from feature_selector import FeatureSelector
+
+fs = FeatureSelector
+
+
+
+filepath = ('/home/s1987119/Diss_data/Final/Final_Products/final_outputs/')
+plt.rc('font',size=8)
+data = pd.read_csv(filepath+'FINAL_RT_WO_ref_mr.csv')
+
+Xcol1 = data.columns[data.columns.str.contains('prec')]
+Xcol1 = data[Xcol1]
+Xcol2 = Xcol1.columns[Xcol1.columns.str.contains('3mb')]
+#Xcol = data.columns[5:]
+X = data[Xcol2]
+Y = data['me_rt_hh_district_prop']
+
+print(len(Xcol2))
+
+
+
+fs = FeatureSelector(data = X, labels = Y)
+
+fs.identify_collinear(correlation_threshold=0.8)
+
+correlated_features = fs.ops['collinear']
+
+X_nc = fs.remove(methods=['collinear'])
+
+
+X_train,X_test,Y_train,Y_test = train_test_split(X_nc,Y,test_size=0.1,random_state=42)
+
+rf = RandomForestRegressor(random_state=42)
+
+rf_fit = rf.fit(X_train,Y_train)
+
+Y_predict = rf_fit.predict(X_test)
+
+mse = mean_squared_error(Y_test,Y_predict)
+rmse = np.sqrt(mse)
+print(rmse)

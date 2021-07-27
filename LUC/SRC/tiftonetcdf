@@ -1,0 +1,13 @@
+'''
+
+Intent
+
+Command line script to convert .tif to netCDF with original dimensions
+
+Change file names and copy to command shell to action
+
+Requires GDAl library, provide directory name in file specification
+
+'''
+
+gdal_translate -of NETCDF <input.tif> <output.nc>

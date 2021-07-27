@@ -1,0 +1,126 @@
+
+'''
+
+Intent
+
+Download MODIS land cover class raster.
+
+Google Earth Engine required.
+
+Run in terminal following import of dataset from Explorer.
+
+Incompatible with python APIs.
+
+Returns a dataset per year in .tif format that will be returned to Google Drive.
+Requiring conversion to netCDF for compatible analysis
+Can be adapted to return to directory.
+
+Geometry can be adapted per location, or simply for expansion; both in the code
+and in the graphical interface.
+
+Appropriate band designated but adaptable.
+
+'''
+
+var geometry =
+    /* color: #98ff00 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[29.117575446446995, 4.66344804505641],
+          [29.117575446446995, -2.054586729064406],
+          [35.665427008947, -2.054586729064406],
+          [35.665427008947, 4.66344804505641]]], null, false);
+
+var geometry = geometry
+var dataset2004 = ee.ImageCollection('MODIS/006/MCD12Q1').filterDate('2004-01-01', '2004-12-31');
+
+print(dataset2004)
+var Image2004 = ee.Image('MODIS/006/MCD12Q1/2004_01_01').select('LC_Type1')
+var Image2005 = ee.Image('MODIS/006/MCD12Q1/2005_01_01').select('LC_Type1')
+var Image2006 = ee.Image('MODIS/006/MCD12Q1/2006_01_01').select('LC_Type1')
+var Image2007 = ee.Image('MODIS/006/MCD12Q1/2007_01_01').select('LC_Type1')
+var Image2008 = ee.Image('MODIS/006/MCD12Q1/2008_01_01').select('LC_Type1')
+var Image2009 = ee.Image('MODIS/006/MCD12Q1/2009_01_01').select('LC_Type1')
+var Image2010 = ee.Image('MODIS/006/MCD12Q1/2010_01_01').select('LC_Type1')
+var Image2011 = ee.Image('MODIS/006/MCD12Q1/2011_01_01').select('LC_Type1')
+var Image2012 = ee.Image('MODIS/006/MCD12Q1/2012_01_01').select('LC_Type1')
+var Image2013 = ee.Image('MODIS/006/MCD12Q1/2013_01_01').select('LC_Type1')
+var Image2014 = ee.Image('MODIS/006/MCD12Q1/2014_01_01').select('LC_Type1')
+var Image2015 = ee.Image('MODIS/006/MCD12Q1/2015_01_01').select('LC_Type1')
+var Image2016 = ee.Image('MODIS/006/MCD12Q1/2016_01_01').select('LC_Type1')
+var Image2017 = ee.Image('MODIS/006/MCD12Q1/2017_01_01').select('LC_Type1')
+var Image2018 = ee.Image('MODIS/006/MCD12Q1/2018_01_01').select('LC_Type1')
+var Image2019 = ee.Image('MODIS/006/MCD12Q1/2019_01_01').select('LC_Type1')
+print(Image2019)
+
+var data2004 = Image2004.clip(geometry);
+var loss2004 = data2004.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2004, description: 'landcover_MODIS2004', region:geometry})
+
+var data2005 = Image2005.clip(geometry);
+var loss2005 = data2005.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2005, description: 'landcover_MODIS2005', region:geometry})
+
+var data2006 = Image2006.clip(geometry);
+var loss2006 = data2006.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2006, description: 'landcover_MODIS2006', region:geometry})
+
+var data2007 = Image2007.clip(geometry);
+var loss2007 = data2007.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2007, description: 'landcover_MODIS2007', region:geometry})
+
+var data2008 = Image2008.clip(geometry);
+var loss2008 = data2008.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2008, description: 'landcover_MODIS2008', region:geometry})
+
+var data2009 = Image2009.clip(geometry);
+var loss2009 = data2009.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2009, description: 'landcover_MODIS2009', region:geometry})
+
+var data2010 = Image2010.clip(geometry);
+var loss2010 = data2010.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2010, description: 'landcover_MODIS2010', region:geometry})
+
+var data2011 = Image2011.clip(geometry);
+var loss2011 = data2011.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2011, description: 'landcover_MODIS2011', region:geometry})
+
+var data2012 = Image2012.clip(geometry);
+var loss2012 = data2012.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2012, description: 'landcover_MODIS2012', region:geometry})
+
+var data2013 = Image2013.clip(geometry);
+var loss2013 = data2013.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2013, description: 'landcover_MODIS2013', region:geometry})
+
+var data2014 = Image2014.clip(geometry);
+var loss2014 = data2014.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2014, description: 'landcover_MODIS2014', region:geometry})
+
+var data2015 = Image2015.clip(geometry);
+var loss2015 = data2015.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2015, description: 'landcover_MODIS2015', region:geometry})
+
+var data2016 = Image2016.clip(geometry);
+var loss2016 = data2016.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2016, description: 'landcover_MODIS2016', region:geometry})
+
+var data2017 = Image2017.clip(geometry);
+var loss2017 = data2017.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2017, description: 'landcover_MODIS2017', region:geometry})
+
+var data2018 = Image2018.clip(geometry);
+var loss2018 = data2018.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2018, description: 'landcover_MODIS2018', region:geometry})
+
+var data2019 = Image2019.clip(geometry);
+var loss2019 = data2019.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2019, description: 'landcover_MODIS2019', region:geometry})
+
+var data2020 = Image2020.clip(geometry);
+var loss2020 = data2020.visualize({bands: ['LC_Type1']})
+Export.image.toDrive({image:loss2020, description: 'landcover_MODIS2020', region:geometry})

@@ -1,0 +1,52 @@
+
+'''
+
+Intent
+
+Download Forest Change and Degradation register raster by Hansen et al (2013)
+
+Google Earth Engine required.
+
+Run in terminal following import of dataset from Explorer.
+
+Incompatible with python APIs.
+
+Returns a dataset in .tif format that will be returned to Google Drive.
+Requiring conversion to netCDF for compatible analysis
+Can be adapted to return to directory.
+
+Less than a GB storage required for study area and period.
+
+Geometry can be adapted per location, or simply for expansion; both in the code
+and in the graphical interface.
+
+'''
+
+var geometry =
+    /* color: #d63000 */
+    /* displayProperties: [
+      {
+        "type": "rectangle"
+      }
+    ] */
+    ee.Geometry.Polygon(
+        [[[27.694818916650064, 5.576808353663135],
+          [27.694818916650064, -2.521460980888349],
+          [36.549799385400064, -2.521460980888349],
+          [36.549799385400064, 5.576808353663135]]], null, false);
+
+
+var dataset2020 = ee.Image('UMD/hansen/global_forest_change_2020_v1_8');
+var treeLossVisParam = {
+  bands: ['lossyear'],
+  min: 0,
+  max: 20,
+  palette: ['black']
+};
+
+var data2020 = dataset2020.clip(geometry);
+Map.addLayer(data2020, treeLossVisParam, '2020');
+
+var data2020 = dataset2020.clip(geometry);
+
+Export.image.toDrive({image:data2020, description: 'Yearly_forest_change'})
