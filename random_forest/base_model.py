@@ -5,13 +5,10 @@ from sklearn.metrics import roc_auc_score, mean_squared_error #c stat
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-#from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 import seaborn as sns
 from pandas.plotting import register_matplotlib_converters
 import pandas as pd
-from sklearn.model_selection import RandomizedSearchCV
 from sklearn.inspection import permutation_importance
 import shap
 
@@ -56,9 +53,7 @@ vals= np.abs(shap_values).mean(0)
 feature_importance = pd.DataFrame(list(zip(X_train.columns,vals)),columns=['col_name','feature_importance_vals'])
 feature_importance.sort_values(by=['feature_importance_vals'],ascending=False,inplace=True)
 feature_importance.head()
-#feature_importance.to_csv(filepath+'vis_importance_all.csv')
 
-#print(feature_importance)
 
 perm_importance  = permutation_importance(rf_fit,X_test,Y_test)
 
