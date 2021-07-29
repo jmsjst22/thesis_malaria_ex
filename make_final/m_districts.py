@@ -1,8 +1,6 @@
 import os
 import pandas as pd
 import matplotlib.pyplot as plot
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 import seaborn as sns
 import geopandas as gpd
 import xarray as xr
