@@ -5,7 +5,6 @@ from sklearn.metrics import roc_auc_score, mean_squared_error #c stat
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-#from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 import seaborn as sns
