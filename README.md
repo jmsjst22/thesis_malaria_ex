@@ -11,5 +11,10 @@
 | glob       | correct at python v3.8| make list of file names in directory|
 | numpy      | 1.21.0    | numerical operators|
 | Climate Data Operators |1.9.9rc1| Executed at bash shell|
-| netCDF4    | 1.5.3
+| netCDF4    | 1.5.3||
+| subprocess | correct at python v3.8| call bash shell subprocesses from python script|
+| GDAL  | 3.2.0 | script used in study is called from bash shell| 
+| seaborn | 0.11.1 | visualisation implicit in most non-netcdf visualisation |
+| sklearn | 0.22.2.post1 | (.ensemble : RandomForestRegressor;<b> metrics : roc_auc_score,mean_squared_error)
+
 
