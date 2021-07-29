@@ -1,6 +1,6 @@
 # thesis_malaria_ex
 
-|  #Package  |  #Version | #Notes                                      |
+|  # Package  |  # Version | # Notes                                   |
 |------------|-----------|---------------------------------------------|
 | Pandas     | 1.3.0rc1  |                                             |
 | Xarray     | 0.18.2    |                                             |
