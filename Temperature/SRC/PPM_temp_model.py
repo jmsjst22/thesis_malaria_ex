@@ -4,7 +4,6 @@ import xarray as xr
 import os
 import argparse
 import pandas as pd
-from scipy import stats
 
 '''
 
