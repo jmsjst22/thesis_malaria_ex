@@ -15,6 +15,9 @@
 | subprocess | correct at python v3.8| call bash shell subprocesses from python script|
 | GDAL  | 3.2.0 | script used in study is called from bash shell| 
 | seaborn | 0.11.1 | visualisation implicit in most non-netcdf visualisation |
-| sklearn | 0.22.2.post1 | (.ensemble : RandomForestRegressor;<b> metrics : roc_auc_score,mean_squared_error)
+| sklearn | 0.22.2.post1 | (.ensemble : RandomForestRegressor;<b> .metrics : roc_auc_score,mean_squared_error; <b> .model_selection: train_test_split, GridSearchCV; <b> .inspection: permutation_importance;).|
+| shap | 0.39 | requires seaborn, sklearn. |
+| pandas.plotting | 1.3.0rc1 | register_matplotlib_converters| 
+  
 
 
