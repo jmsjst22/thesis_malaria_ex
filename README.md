@@ -4,7 +4,7 @@
 |------------|-----------|---------------------------------------------|
 | pandas     | 1.3.0rc1  |    Dataframe operations/csv manipulation                                         |
 | xarray     | 0.18.2    |     netcdf manipulation/creation                                      |
-| ncview     | 2.1.8     | GUI Launched at bash shell (not python)|
+| ncview     | 2.1.8     | netCDF viewer, GUI Launched at bash shell (not python)|
 | argparse   | 1.1       |  make command line arguments to alter operation of script                                           |
 | zipfile    | correct at python v3.8| zip/unzip files to location|
 | os         | correct at python v3.8||
