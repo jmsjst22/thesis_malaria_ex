@@ -1,4 +1,6 @@
-# thesis_malaria_ex
+# Thesis Repository: Malaria Risk, James Tomlinson
+
+
 
 |  PACKAGE/MODULE |  VERSION  | Notes|
 |------------|-----------|---------------------------------------------|
