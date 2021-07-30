@@ -40,7 +40,7 @@ The library will make use of the following modules and packages with no known de
   | SCRIPT | PLATFORM | DATA DOWNLOAD | Preview |
   |--------|----------|---------------|---------|
   | Forest_change_yearly_gee.txt | Google Earth Engine | Forest Change and Degradation (Hansen et al 2013).|   ![Forest Loss](/diagrams/Capture.GIF) |
-  | MODISdownload_gee.txt | Google Earth Engine | MODIS land cover class |  ![MODIS Land Cover Classes](/diagrams/MODIS.GIF) 
+  | MODISdownload_gee.txt | Google Earth Engine | MODIS land cover class |  ![MODIS Land Cover Classes](/diagrams/modis.GIF) 
   |
   
  
