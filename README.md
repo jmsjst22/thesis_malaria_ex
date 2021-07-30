@@ -13,7 +13,9 @@ The library will make use of the following modules and packages with no known de
 
 |  PACKAGE/MODULE |  VERSION  | Notes|
 |------------|-----------|---------------------------------------------|
-| '''pandas'''     | '''1.3.0rc1'''  |    Dataframe operations/csv manipulation                                         |
+| '''
+  pandas
+  '''     | '''1.3.0rc1'''  |    Dataframe operations/csv manipulation                                         |
 | xarray     | '''0.18.2'''    |     Netcdf manipulation/creation                                      |
 | ncview     | 2.1.8     | NetCDF viewer, GUI Launched at bash shell (not python)|
 | argparse   | 1.1       |  Create command line arguments to alter operation of script                                           |
