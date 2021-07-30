@@ -35,7 +35,7 @@ The library will make use of the following modules and packages with no known de
 
 # Data Download
 
-  The following scripts should be executed at the command line or in their respective browser consoles to download data locally or to your cloud (gmail for Google Earth Engine):
+  The following scripts should be executed at the command line or in their respective browser consoles to download data locally or to your cloud (GDrive for Google Earth Engine):
   
   # Land Use Change
   
