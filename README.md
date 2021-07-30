@@ -19,7 +19,7 @@ The library will make use of the following modules and packages with no known de
 | ``` argparse ```  | ``` 1.1 ```      |  Create command line arguments to alter operation of script                                           |
 | ``` zipfile ```   | correct at python ``` v3.8 ```| Zip/unzip files to location|
 | ``` os  ```       | correct at python ``` v3.8 ```| Interface with Operating System |
-| ``` glob ```       | ``` correct at python ``` v3.8 ```| Make list of file names in directory|
+| ``` glob ```       | correct at python ``` v3.8 ```| Make list of file names in directory|
 | ``` numpy ```     |  ``` 1.21.0 ```   | Numerical operations |
 |  ``` Climate Data Operators ``` | ``` 1.9.9rc1 ```| Executed at bash shell|
 | ``` netCDF4 ```   | ``` 1.5.3 ```| Some netCDF operations (likely executable with xarray) |
@@ -49,9 +49,9 @@ The library will make use of the following modules and packages with no known de
   
   | Variable | SCRIPT | PLATFORM | DATA DOWNLOAD | Preview |
   |----------|--------|----------|---------------|---------|
-  | Humidity | downloadhumidity.py | CDS toolbox/API on command line | Agrometeorological indicators from 1979 <b> to present derived from reanalysis (2m relative humidity) |  ![Relative Humidity at 2 metres](/diagrams/humidity.gif) |
-  | Temperature | temp_cdi.py | CDS toolbox/API on command line | ERA5-Land hourly data from 1981 to present <b> (2m temperature (K)) |  ![Temperature at 2 metres](/diagrams/temperature.gif)
-  | Precipitation | Adapted temp_cdi.py | CDS toolbox/API on command line | ERA5-Land hourly data from 1981 to present <b> (Total Precipitation (metres)) |  ![Total Precipitation](/diagrams/precipitation.gif)
+  | Humidity | ``` downloadhumidity.py ``` | CDS toolbox/API on command line | Agrometeorological indicators from 1979 <b> to present derived from reanalysis (2m relative humidity) |  ![Relative Humidity at 2 metres](/diagrams/humidity.gif) |
+  | Temperature |``` temp_cdi.py ``` | CDS toolbox/API on command line | ERA5-Land hourly data from 1981 to present <b> (2m temperature (K)) |  ![Temperature at 2 metres](/diagrams/temperature.gif)
+  | Precipitation | Adapted ``` temp_cdi.py ``` | CDS toolbox/API on command line | ERA5-Land hourly data from 1981 to present <b> (Total Precipitation (metres)) |  ![Total Precipitation](/diagrams/precipitation.gif)
  
 Notes on data download
 >Precipitation data can be downloaded with adaptation of the Temperature API code. The hourly temporal resolution and data source are the same so variable only will need to be changed. Precipitation and temperature are downloaded in two smaller portions for storage control - 5 years each are recommended. This can be merged for the study period (demonstrated in the next section).
@@ -66,6 +66,6 @@ Notes on data download
 
   | Variable | Script Flow | Primary/Final Output |
   |----------|-------------|----------------------|
-  |Temperature & Precipitation| Temp_Prec_merge.py default merge of downloaded temperature files. <b> Optional argument "--prec True" at command line will merge precipitation files. | Optionally merged Temperature or Precipitation for entire initial period.
-  | Humidity | Unzip and clip iteratively with rename_retime.py --> Create grid for unifying humidity netcdf format with regridhum.py --> <b> Reindex all netcdf to create grid with reind_like.py  --> <b> Delete regrid.nc from directory to exclude from merge --> <b> Merge across all hour period sets at command shell with cdo merge (merge text file). |
+  |Temperature & Precipitation| ``` Temp_Prec_merge.py ``` default merge of downloaded temperature files. <b> Optional argument ``` --prec True ``` at command line will merge precipitation files. | Optionally merged Temperature or Precipitation for entire initial period.
+  | Humidity | Unzip and clip iteratively with ``` rename_retime.py ```--> Create grid for unifying humidity netcdf format with ``` regridhum.py ``` --> <b> Reindex all netcdf to create grid with ``` reind_like.py ```  --> <b> Delete ``` regrid.nc ``` from directory to exclude from merge --> <b> Merge across all hour period sets at command shell with ``` cdo merge ``` (``` merge.txt ```). |
   
