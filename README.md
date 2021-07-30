@@ -1,4 +1,4 @@
-# Environmental Malaria Risk: Thesis Repository, James Tomlinson
+# Thesis Repository, James Tomlinson: Environmental Malaria Risk.
 
 This repository is compiled to provide a basis to characterise theoretical malaria risk through environmental impactors, and recreate the findings of Tomlinson (2021). <b>
 
@@ -41,6 +41,7 @@ The library will make use of the following modules and packages with no known de
   |--------|----------|---------------|---------|
   | Forest_change_yearly_gee.txt | Google Earth Engine | Forest Change and Degradation (Hansen et al 2013).|   ![Forest Loss](/diagrams/Capture.GIF) |
   | MODISdownload_gee.txt | Google Earth Engine | MODIS land cover class |  ![MODIS Land Cover Classes](/diagrams/modis.GIF) 
-  |
+  | landcover_download.py | CDS toolbox/API on command line | ICDR land cover class |  ![ICDR Land Cover Classes](/diagrams/icdr.GIF
+
   
  
