@@ -37,11 +37,18 @@ The library will make use of the following modules and packages with no known de
 
   The following scripts should be executed at the command line or in their respective browser consoles to download data locally or to your cloud (gmail for Google Earth Engine):
   
+  # Land Use Change
+  
   | SCRIPT | PLATFORM | DATA DOWNLOAD | Preview |
   |--------|----------|---------------|---------|
   | Forest_change_yearly_gee.txt | Google Earth Engine | Forest Change and Degradation (Hansen et al 2013).|   ![Forest Loss](/diagrams/Capture.GIF) |
   | MODISdownload_gee.txt | Google Earth Engine | MODIS land cover class |  ![MODIS Land Cover Classes](/diagrams/modis.GIF) |
   | landcover_download.py | CDS toolbox/API on command line | ICDR land cover class |  ![ICDR Land Cover Classes](/diagrams/icdr.GIF) |
-
+  
+  # Climate
+  
+  | Variable | SCRIPT | PLATFORM | DATA DOWNLOAD | Preview |
+  |----------|--------|----------|---------------|---------|
+  | Humidity | downloadhumidity.py | CDS toolbox/API on command line | Agrometeorological indicators from 1979 <b> to present derived from reanalysis (2m relative humidity) |  ![Relative Humidity at 2 metres](/diagrams/humidity.gif)
   
  
