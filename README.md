@@ -67,5 +67,5 @@ Notes on data download
   | Variable | Script Flow | Primary/Final Output |
   |----------|-------------|----------------------|
   |Temperature & Precipitation| ``` Temp_Prec_merge.py ``` default merge of downloaded temperature files. <b> Optional argument ``` --prec True ``` at command line will merge precipitation files. | Optionally merged Temperature or Precipitation for entire initial period.
-  | Humidity | Unzip and clip iteratively with ``` rename_retime.py ```--> Create grid for unifying humidity netcdf format with ``` regridhum.py ``` --> <b> Reindex all netcdf to create grid with ``` reind_like.py ```  --> <b> Delete ``` regrid.nc ``` from directory to exclude from merge --> <b> Merge across all hour period sets at command shell with ``` cdo merge ``` (``` merge.txt ```). |
+  | Humidity | Unzip and clip iteratively with ``` rename_retime.py ```--> Create grid for unifying humidity netcdf format with ``` regridhum.py ``` --> <b> Reindex all netcdf to create grid with ``` reind_like.py ```  --> <b> Delete ``` regrid.nc ``` from directory to exclude from merge --> <b> Merge across all hour period sets at command shell with ``` cdo merge ``` (``` merge.txt ```). | Merged single file for whole period, appropriately timed and formatted. |
   
