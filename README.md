@@ -41,9 +41,11 @@ The library will make use of the following modules and packages with no known de
   
   | SCRIPT | PLATFORM | DATA DOWNLOAD | Preview |
   |--------|----------|---------------|---------|
-  | ``` Forest_change_yearly_gee.txt ``` | Google Earth Engine | Forest Change and Degradation (Hansen et al 2013).|   ![Forest Loss](/diagrams/Capture.GIF) |
-  | ``` MODISdownload_gee.txt ```| Google Earth Engine | MODIS land cover class |  ![MODIS Land Cover Classes](/diagrams/modis.GIF) |
-  | ``` landcover_download.py ```| CDS toolbox/API on command line | ICDR land cover class |  ![ICDR Land Cover Classes](/diagrams/icdr.GIF) |
+  | ``` Forest_change_yearly_gee.txt ``` Single Years | Google Earth Engine | Forest Change and Degradation (Hansen et al 2013).|   ![Forest Loss](/diagrams/Capture.GIF) |
+  | ``` MODISdownload_gee.txt ``` Single Years| Google Earth Engine | MODIS land cover class |  ![MODIS Land Cover Classes](/diagrams/modis.GIF) |
+  | ``` landcover_download.py ``` Single Years | CDS toolbox/API on command line | ICDR land cover class |  ![ICDR Land Cover Classes](/diagrams/icdr.GIF) |
+  
+  Scripts are/can be adapted for period of study. The scripts operate by serving multiple single year files.
   
   # Climate
   
@@ -73,5 +75,7 @@ Notes on data download
   
   | Datasets | Script Flow | Primary/Final Output |
   |----------|-------------|----------------------|
-  | Forest Loss | Convert to netCDF with ''' tiftonetcdf.txt ''' copied to command shell | .netCDF for all years downloaded from .tif
+  | Forest Loss | Convert to netCDF with ``` tiftonetcdf.txt ``` copied to command shell | .netCDF for all single years from .tif with binary pixel notification for forest loss |
+  | MODIS Land Cover Class | Arrives in MODIS Sinusoidal projection, regrid at command line with ``` warp.txt ``` --> Convert to netCDF with ``` tiftonetcdf.txt ``` copied in command shell | .netCDF for all single years with land use classes |
+  | ICDR Land Cover Class | Optionally Clip (storage saving) with adapted ``` netxclip.py ``` method --> Regrid to common grid frame with ``` reindex_LUC ``` | .netCDF for all single years with land use classes
   
