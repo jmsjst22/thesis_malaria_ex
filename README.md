@@ -1,14 +1,14 @@
-# Environmental Malaria Risk. Thesis Repository, James Tomlinson
+# Environmental Malaria Risk: Thesis Repository, James Tomlinson
 
-## This repository is compiled to provide a basis to characterise theoretical malaria risk through environmental impactors, and recreate the findings of Tomlinson (2021). <b>
-  
-## It is procedural code that can be used to download, create, treat, decompose and analyse netCDF4 data. Post-analysis deals with csv datasets of summarised theoretical malaria risk. <b>
+This repository is compiled to provide a basis to characterise theoretical malaria risk through environmental impactors, and recreate the findings of Tomlinson (2021). <b>
 
-##Logic <b>
+ It is procedural code that can be used to download, create, treat, decompose and analyse netCDF4 data. Post-analysis deals with csv datasets of summarised theoretical malaria risk. <b>
+
+## Logic <b>
   
   ![Logic Diagram](/diagrams/diagram_for_readme.png)
 
-
+# The library will make use of the following modules and packages. P
 
 |  PACKAGE/MODULE |  VERSION  | Notes|
 |------------|-----------|---------------------------------------------|
@@ -27,7 +27,8 @@
 | seaborn | 0.11.1 | visualisation implicit in most non-netcdf visualisation |
 | sklearn | 0.22.2.post1 | (.ensemble : RandomForestRegressor;<b> .metrics : roc_auc_score,mean_squared_error; <b> .model_selection: train_test_split, GridSearchCV; <b> .inspection: permutation_importance;).|
 | shap | 0.39 | requires seaborn, sklearn. |
-| pandas.plotting | 1.3.0rc1 | register_matplotlib_converters| 
+| pandas.plotting | 1.3.0rc1 | register_matplotlib_converters (for Shapley plotting| 
+| feature-selector | 1.0.0 | Contributes to collinearity and importance reduction |
   
 
 
