@@ -13,8 +13,8 @@ The library will make use of the following modules and packages with no known de
 
 |  PACKAGE/MODULE |  VERSION  | Notes|
 |------------|-----------|---------------------------------------------|
-| pandas     | 1.3.0rc1  |    Dataframe operations/csv manipulation                                         |
-| xarray     | 0.18.2    |     Netcdf manipulation/creation                                      |
+| '''pandas'''     | '''1.3.0rc1'''  |    Dataframe operations/csv manipulation                                         |
+| xarray     | '''0.18.2'''    |     Netcdf manipulation/creation                                      |
 | ncview     | 2.1.8     | NetCDF viewer, GUI Launched at bash shell (not python)|
 | argparse   | 1.1       |  Create command line arguments to alter operation of script                                           |
 | zipfile    | correct at python v3.8| Zip/unzip files to location|
@@ -66,5 +66,6 @@ Notes on data download
 
   | Variable | Script Flow | Primary/Final Output |
   |----------|-------------|----------------------|
-  |Temperature| Temp_Prec_merge.py default merge of downloaded temperature files. <b> Optional argument "prec True" at command line will merge precipitation files. | Optionally merged Temperature or Precipitation for entire initial period.
+  |Temperature & Precipitation| Temp_Prec_merge.py default merge of downloaded temperature files. <b> Optional argument "--prec True" at command line will merge precipitation files. | Optionally merged Temperature or Precipitation for entire initial period.
+  | Humidity | Unzip and clip iteratively with rename_retime.py --> Create grid for unifying humidity netcdf format with regridhum.py --> <b> Reindex all netcdf to create grid with reind_like.py  --> <b> Delete regrid.nc from directory to exclude from merge --> <b> Merge across all hour period sets at command shell with cdo merge (merge text file). |
   
