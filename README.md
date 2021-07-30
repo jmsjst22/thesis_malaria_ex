@@ -2,13 +2,14 @@
 
 This repository is compiled to provide a basis to characterise theoretical malaria risk through environmental impactors, and recreate the findings of Tomlinson (2021). <b>
 
- It is procedural code that can be used to download, create, treat, decompose and analyse netCDF4 data. Post-analysis deals with csv datasets of summarised theoretical malaria risk. <b>
+It is procedural code that can be used to download, create, treat, decompose and analyse netCDF4 data. Post-analysis deals with csv datasets of summarised theoretical malaria risk. <b>
 
 ## Logic <b>
   
   ![Logic Diagram](/diagrams/diagram_for_readme.png)
 
-# The library will make use of the following modules and packages. P
+The library will make use of the following modules and packages with no known deprecation issues as of 30/07/2021.
+ 
 
 |  PACKAGE/MODULE |  VERSION  | Notes|
 |------------|-----------|---------------------------------------------|
@@ -21,7 +22,8 @@ This repository is compiled to provide a basis to characterise theoretical malar
 | glob       | correct at python v3.8| make list of file names in directory|
 | numpy      | 1.21.0    | numerical operators|
 | Climate Data Operators |1.9.9rc1| executed at bash shell|
-| netCDF4    | 1.5.3||
+| netCDF4    | 1.5.3| Some netCDF operations (likely executable with xarray) |
+| rioxarray  | 0.4.3 | Used for shapefile/district summarisation and application of coordinate reference system |
 | subprocess | correct at python v3.8| call bash shell subprocesses from python script|
 | GDAL  | 3.2.0 | script used in study is called from bash shell| 
 | seaborn | 0.11.1 | visualisation implicit in most non-netcdf visualisation |
