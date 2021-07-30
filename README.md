@@ -1,4 +1,8 @@
-# Thesis Repository: Malaria Risk, James Tomlinson
+# Environmental Malaria Risk. Thesis Repository, James Tomlinson
+
+## This repository is compiled to provide a basis to characterise theoretical malaria risk through environmental impactors, and recreate the findings of Tomlinson (2021). 
+## It is procedural code that can be used to download, create, treat, decompose and analyse netCDF4 data. Post-analysis deals with csv datasets of summarised theoretical malaria risk. 
+
 
 
 
