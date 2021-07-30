@@ -1,8 +1,12 @@
 # Environmental Malaria Risk. Thesis Repository, James Tomlinson
 
-## This repository is compiled to provide a basis to characterise theoretical malaria risk through environmental impactors, and recreate the findings of Tomlinson (2021). 
-## It is procedural code that can be used to download, create, treat, decompose and analyse netCDF4 data. Post-analysis deals with csv datasets of summarised theoretical malaria risk. 
+## This repository is compiled to provide a basis to characterise theoretical malaria risk through environmental impactors, and recreate the findings of Tomlinson (2021). <b>
+  
+## It is procedural code that can be used to download, create, treat, decompose and analyse netCDF4 data. Post-analysis deals with csv datasets of summarised theoretical malaria risk. <b>
 
+##Logic <b>
+  
+  ![Logic Diagram](thesis_malaria_ex/diagrams/diagram_for_readme.png?raw=true "Procedural Logic")
 
 
 
