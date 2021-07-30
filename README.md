@@ -53,6 +53,9 @@ The library will make use of the following modules and packages with no known de
   | Temperature | temp_cdi.py | CDS toolbox/API on command line | ERA5-Land hourly data from 1981 to present <b> (2m temperature (K)) |  ![Temperature at 2 metres](/diagrams/temperature.gif)
   | Precipitation | Adapted temp_cdi.py | CDS toolbox/API on command line | ERA5-Land hourly data from 1981 to present <b> (Total Precipitation (metres)) |  ![Total Precipitation](/diagrams/precipitation.gif)
  
-Precipitation data can be downloaded with adaptation of the Temperature API code. The hourly temporal resolution and data source are the same so variable only will need to be changed. Precipitation and temperature are downloaded in two smaller portions for storage control - 5 years each are recommended. This can be merged for the study period (demonstrated in the next section).
+>Precipitation data can be downloaded with adaptation of the Temperature API code. The hourly temporal resolution and data source are the same so variable only will need to be changed. Precipitation and temperature are downloaded in two smaller portions for storage control - 5 years each are recommended. This can be merged for the study period (demonstrated in the next section).
   
-Humidity data is served in period streams - therefore upon download a dataset will represent the entire study period but only one timestamp daily (e.g. 900,1500,1800). A demonstration on its merging is in the next section. 
+>Humidity data is served in period streams - therefore upon download a dataset will represent the entire study period but only one timestamp daily (e.g. 900,1500,1800). A demonstration on its merging is in the next section. 
+
+>Finally, it is recommended that each data stream is taken to analysis individually. The data downloads are storage consumptive (with land use change and humidity requiring more than 2GB for full variable sets). The processes from this point are all reductive as they are clipping and merging larger datasets. It is recommended that the raw data be removed from local directories at each stage. This is automated for Relative Humidity but is kept as an option for other variable sets.
+  
