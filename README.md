@@ -6,7 +6,7 @@
 
 ##Logic <b>
   
-  ![Logic Diagram](thesis_malaria_ex/diagrams/diagram_for_readme.png "Procedural Logic")
+  ![Logic Diagram](/diagrams/diagram_for_readme.png)
 
 
 
