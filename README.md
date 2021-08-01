@@ -159,6 +159,7 @@ This will give one dataset with all variable columns at each timescale (subseque
 Each of the following scripts can be adapted to 'slice' the data by desired features to asses their label response:
 
 | Script | Function |
+|--------|----------|                                                                                                                                
 |  ``` base_model.py``` | Serves an output of performance of a non-tuned model, as measured by RMSE. Adapting script can serve and measure performance of different feature sets, for optimisation and experimentation.|
 | ```best_params.py``` | Serves an output of performance for a model tuned by GridSearchCV in its hyper-parameters. It is recommended that hyper-parameters are tried in a wide and varying combination. Combination sets will be explained in the technical document as they are related to model performance directly. |
 | ```collinear_importance_reduction.py``` | This script leverages ```feature-selector``` package to experiment with removing collinear variables at non-systematically. Less impactful features are also removed with ``` feature-selector ``` in-built method using a gradient boosting machine. Warning: this method is non-deterministic (please action multiple times to capture variation) and is consumptive of time- so please make a cup of tea or go for a wander when you run this script. The main output is, as above, a new measure of model error.
