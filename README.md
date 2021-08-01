@@ -91,7 +91,7 @@ The library will make use of the following modules and packages with no known de
 
   Land Use Change was tested for spatial artefacts of error only, in ``` ncview ```. Any digitization artefacts within the bounds of Uganda were investigated - if not error in method could be found the data would be thrown out, and the process started again in order to assess differences in pre-analysis products. Continuation of error artefacts would see the data thrown out of all experiments.  
 
- ![Land Use Change Error Artefacts](/diagrams/lucvald.GIF                                                                                                                                                  
+ ![Land Use Change Error Artefacts](/diagrams/luc_vald.GIF                                                                                                                                               
                                                                                                                                                    
                                                                                                                                                  
                                                                                                                                                     
