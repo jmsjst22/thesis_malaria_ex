@@ -1,4 +1,4 @@
-# Thesis Repository, James Tomlinson: Environmental Malaria Risk.
+# Thesis Repository, Facilitative of Supporting Documentation Tomlinson (2021): Environmental Malaria Risk
 
 This repository is compiled to provide a basis to characterise theoretical malaria risk through environmental impactors, and recreate the findings of Tomlinson (2021). <b>
 
