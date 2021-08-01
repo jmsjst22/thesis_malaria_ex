@@ -130,7 +130,8 @@ Following analysis, it is recommended that all final products are stored in a fo
 
 All steps from the previous validation stage should be repeated here. Additional validation includes sense checking for unusual artefacts (straight lines) in all dataset variables. If there appears to be repeated land use change of the same kind happening at a single location this portion may have to be removed at final stages (removal of districts effected from modelling). 
 
-### Sample of digitization/analysis artefact (see top right and bottom right areas that do not change, with bottom showing artefacts of regridding outside of the Uganda area).
+### Sample of digitization/analysis artefact
+(See top right and bottom right areas that do not change, with bottom showing artefacts of regridding outside of the Uganda area).
 
  ![land use is sometimes wrong](/diagrams/luc_art.gif)
 
