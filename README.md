@@ -79,6 +79,21 @@ The library will make use of the following modules and packages with no known de
   | MODIS Land Cover Class | Arrives in MODIS Sinusoidal projection, regrid at command line with ``` warp.txt ``` --> Convert to netCDF with ``` tiftonetcdf.txt ``` copied in command shell | .netCDF for all single years with land use classes |
   | ICDR Land Cover Class | Optionally Clip (storage saving) with adapted ``` netxclip.py ``` method --> Regrid to common grid frame with ``` reindex_LUC.py ``` | .netCDF for all single years with land use classes
   
- # Analysis
+ # Validation
+  
+  All validation was facilitated with minimum working examples (for method step validation) and ncview (for product step validation).
+  
+  There are no code templates for this as the method of validation is likely to change upon generalisation and many of the operations were single line or visual checks.
+  
+  Minimum working examples were used for humidity, precipitation and temperature, whereby 0.1 degree (latitude and longitude) subsections were taken from within Uganda borders. This was typically taken at random (np.random between a range for latitude and longitude), where the location was checked for correct merging and minimal impacts of the regridding. Regridding was assessed in order to view the impact in offset of unifying the spatial grids. This assessment was finalised in QGIS with single time slices, whereby spatial statistics (of Uganda's districts shapefile) and the RMSE and total differences between untreated netCDF values and regridded, post-merging netCDF values were assessed in a time slice (hour) for each year of the study period. 
+  
+  For example, 0900 1/04/2018 for humidity, temperature and precipitation at a 300km^2 area were tested for their spatial statistics. RMSE of <0.05 were observed for all time slices under this method and were accepted.
+
+  Land Use Change was tested for spatial artefacts of error only, in ``` ncview ```. Any digitization artefacts within the bounds of Uganda were investigated - if not error in method could be found the data would be thrown out, and the process started again in order to assess differences in pre-analysis products. Continuation of error artefacts would see the data thrown out of all experiments.  
+
+ ![Land Use Change Error Artefacts](/diagrams/lucvald.GIF                                                                                                                                                  
+                                                                                                                                                   
+                                                                                                                                                 
+                                                                                                                                                    
   
  
