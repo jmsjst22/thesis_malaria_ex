@@ -130,9 +130,11 @@ Following analysis, it is recommended that all final products are stored in a fo
 
 All steps from the previous validation stage should be repeated here. Additional validation includes sense checking for unusual artefacts (straight lines) in all dataset variables. If there appears to be repeated land use change of the same kind happening at a single location this portion may have to be removed at final stages (removal of districts effected from modelling). 
 
-### Sample of digitization/analysis artefact (see top right and bottom right areas that do not change 
+### Sample of digitization/analysis artefact (see top right and bottom right areas that do not change, with bottom showing artefacts of regridding outside of the Uganda area).
 
  ![land use is sometimes wrong](/diagrams/luc_art.gif)
+
+Following removal  of error artefacts and sense checking of humidity, temperature and precipitation summarisations (there was no exceedence of expected or maximum values for risk or climate variable data), the datasets are ready for geographical summary, leading to final stages of modelling with RF regressor
 
 
                                                                                                                                                     
