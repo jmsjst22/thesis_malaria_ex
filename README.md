@@ -135,7 +135,41 @@ All steps from the previous validation stage should be repeated here. Additional
 
  ![land use is sometimes wrong](/diagrams/luc_art.gif)
 
-Following removal  of error artefacts and sense checking of humidity, temperature and precipitation summarisations (there was no exceedence of expected or maximum values for risk or climate variable data), the datasets are ready for geographical summary, leading to final stages of modelling with RF regressor
+Following removal  of error artefacts and sense checking of humidity, temperature and precipitation summarisations (there was no exceedence of expected or maximum values for risk or climate variable data), the datasets are ready for geographical summary, leading to final stages of modelling with RF regressor.
+
+# Geographic Summarisation 
+
+At this stage, the data is prepared to be summarised by geographies. This geography must be in shapefile format with a designated filepath. The code for each sumamrisation is seperated by month and year as these will require different treatements and checks at later stages. The scripts are also written as such where, especially in the case of land use change, if there are any 'empty' districts post-summarisation, these will be accepted and registered as 0.
+
+| Time-scale | Script | Output |
+|------------|--------|--------|
+| Month      | m_districts.py | Format .csv: Geographically summarised environmental conditions and  aggregated risk and summary statistics for monthly precipitation, temperature and humidity only |
+| Year       | y_districts.py | Format .csv: Geographically summarised environmental conditions and aggregated risk and summary statistics for yearly precipitation, temperature and humidity. Land use change is at yearly frequency and will be summed per district rather than spatially averaged. |
+
+# Association with malaria indicating survey timescale                                                                                                                                                     
+From this, computation will be manual to get 1,2,3 months and year of and year before summary statistics for each district record pertaining to DHS/MIS malaria indicators. Future development/recommendations for streamlining will make this automatic with date/time objects as part of the variable titles,
+associating these variables with their appropriate survey date.
+
+The final product for modelling will require pandas merging of month and year data and pandas vertical concatenation of all year/district combinations. 
+
+This will give one dataset with all variable columns at each timescale (subsequently, ``` features ```) with a year/district multi-index ( subsequently ``` rows ``` or ``` samples ``` ), with each row having a ``` label ```, or malaria indicating proportion value, as specified in the supporting technical document.   
+
+# Random Forest 
+
+Each of the following scripts can be adapted to 'slice' the data by desired features to asses their label response:
+
+| Script | Function |
+|  base_model.py | Serves an output of performance of a non-tuned model, as measured by RMSE. Adapting script can serve and measure performance of different feature sets, for optimisation and experimentation.|
+| best_params.py | Serves an output of performance for a model tuned by GridSearchCV in its hyper-parameters. It is recommended that hyper-parameters are tried in a wide and varying combination. Combination sets will be explained in the technical document as they are related to model performance directly. |
+| collinear_importance_reduction.py | This script leverages ```feature-selector``` package to experiment with removing collinear variables at random and  
+                                                                                                                                                  
+                                                                                                                                                   
+                                                                                                                                                  
+                                                                                                                                                    
+
+
+                                                                                                                                                
+                                                                                                                                                   
 
 
                                                                                                                                                     
