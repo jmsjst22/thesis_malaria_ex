@@ -28,7 +28,7 @@ The library will make use of the following modules and packages with no known de
 | ``` GDAL ```  |``` 3.2.0 ```| Script used in study is called from bash shell| 
 | ``` seaborn ``` | ``` 0.11.1 ``` | Visualisation implicit in most non-netcdf visualisation |
 | ``` sklearn ``` | ``` 0.22.2.post1 ``` | (``` .ensemble ```: ``` RandomForestRegressor ```;<b> ``` .metrics ``` :  ``` mean_squared_error ```; <b> ``` .model_selection ```: ``` train_test_split ```, ```GridSearchCV ```; <b> ``` .inspection ```: ```permutation_importance ```;).|
-| ``` shap ```| ``` 0.39 ``` | ``` Requires seaborn ```, ``` sklearn ```: For Shapley value analysis and visualisation |
+| ``` shap ```| ``` 0.39 ``` | Requires ``` seaborn ```, ``` sklearn ```: For Shapley value analysis and visualisation |
 | ``` pandas.plotting ``` | ``` 1.3.0rc1 ``` | register_matplotlib_converters (for Shapley plotting)| 
 |  ``` feature-selector ``` | ``` 1.0.0 ``` | Contributes to collinearity and importance reduction |
   
