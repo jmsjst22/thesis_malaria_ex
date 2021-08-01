@@ -89,11 +89,56 @@ The library will make use of the following modules and packages with no known de
   
   For example, 0900 1/04/2018 for humidity, temperature and precipitation at a 300km^2 area were tested for their spatial statistics. RMSE of <0.05 were observed for all time slices under this method and were accepted.
 
-  Land Use Change was tested for spatial artefacts of error only, in ``` ncview ```. Any digitization artefacts within the bounds of Uganda were investigated - if not error in method could be found the data would be thrown out, and the process started again in order to assess differences in pre-analysis products. Continuation of error artefacts would see the data thrown out of all experiments.  
+  Land use change was tested for spatial artefacts of error only, in ``` ncview ```. Any digitization artefacts within the bounds of Uganda were investigated - if not error in method could be found the data would be thrown out, and the process started again in order to assess differences in pre-analysis products. Continuation of error artefacts would see the data thrown out of all experiments.  
+                                                                                                                                                    
+Artefacts of error (straight continuous lines, blocks, or continuously/unrealistically changing areas).
+ ![Land Use change Error Artefacts](/diagrams/luc_vald.GIF)        
+                                                                                                                                                    
+ Much of the above validation campaign is the method repeated for post-analysis validation.                                                                                                                                                   
+ # Analysis
+                                                                                                                                                    
+ The analysis stage finds the highest divergence in treatment and scripts used for each variable:
+                                                                                                                                                    
+ ## Temperature
 
- ![Land Use Change Error Artefacts](/diagrams/luc_vald.GIF)                                                                                                                                               
+| Variable | Script | Requirements |
+|----------|--------|--------------|                                                                                                                         | Diurnal Temperature Range | diurnal_summary_temp.py | Merged temperature netCDF at appropriate directory location, packages as above |
+| Risk attributable to mosquito transmission component related to temperature | PPM_temp_model.py | As above |
+
+## Precipitation
+
+| Variable | Script | Requirements |
+|----------|--------|--------------|
+| Number of days at precipitation bands, temporal statistics for year and months | precipitation.py | Merged precipitation netCDF at appropriate directory location, packages as above |
+
+## Humidity 
+
+| Variable | Script | Requirements |
+|----------|--------|--------------|
+| Number of days at high/low humidity, temporal statistics for year and months | humidity.py | All pre-treatment measures have to be completed in order, to get a merged humidity netCDF at appropriate location, packages as above |
+
+## Land use change
+
+| Variable | Script | Requirements |
+|----------|--------|--------------|
+| LUC for MODIS and ICDR suites: Land use change as defined by natural to developed, wet to dry, dry to wet, any change at all, any change appearing as degradation (for example from forest to grassland) | LUCall.py | MODIS and ICDR data suites for all years in single directory for all years, regridded where necessary, packages as above |
+| Forest loss (multiple years) | frontierforest_LUC.py | Single regridded/ converted to netCDF with dataset variables representing single years, packages as above |
+
+Following analysis, it is recommended that all final products are stored in a folder relative to the post-analysis script requirements.
+
+# Validation 
+
+All steps from the previous validation stage should be repeated here. Additional validation includes sense checking for unusual artefacts (straight lines) in all dataset variables. If there appears to be repeated land use change of the same kind happening at a single location this portion may have to be removed at final stages (removal of districts effected from modelling). 
+
+### Sample of digitization/analysis artefact (see top right and bottom right areas that do not change 
+
+ ![land use is sometimes wrong](/diagrams/luc_art.gif)
+
+
+                                                                                                                                                    
                                                                                                                                                    
-                                                                                                                                                 
+                                                                                                                                                    
+                                                                                                                                                  
                                                                                                                                                     
   
  
