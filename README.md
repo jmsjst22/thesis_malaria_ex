@@ -156,7 +156,7 @@ This will give one dataset with all variable columns at each timescale (subseque
 
 # Random Forest 
 
-Each of the following scripts can be adapted to 'slice' the data by desired features to asses their label response:
+Each of the following scripts can be adapted to 'slice' the data by desired features to assess their label response:
 
 | Script | Function |
 |--------|----------|                                                                                                                                
@@ -165,8 +165,14 @@ Each of the following scripts can be adapted to 'slice' the data by desired feat
 | ```collinear_importance_reduction.py``` | This script leverages ```feature-selector``` package to experiment with removing collinear variables at non-systematically. Less impactful features are also removed with ``` feature-selector ``` in-built method using a gradient boosting machine. Warning: this method is non-deterministic (please action multiple times to capture variation) and is consumptive of time- so please make a cup of tea or go for a wander when you run this script. The main output is, as above, a new measure of model error.
 | ```containsbest.py``` | This script leverages hyper-parameter tuning as above, but is adapted (and adaptable) to only query certain feature sets. For example, if I am only interested in temperature related risk trends 3 months before the survey date, I can adapt the code to query only this set against the malaria indicating labels. This script can be used for ultra-specific testing of new variable combinations while "holding back" unwanted features.
 | ``` randomsearch.py ``` | Uses RandomSearchCV instead of GridSearchCV to find the best hyper-parameters. Tests all feature sets from Tomlinson (2021). Effective when considering a starting point for hyper-parameterisation (e.g. identifying a good starting range). Warning: not as accurate as GridSearchCV; could be more compact - consider looping for slices in future versions or if user would like to adapt. |
-| hindcast.py |  This script is adaptable to 'hold back' a certain year from test and train sets. The intent is to hindcast and test for overfitting- which are theoretical and practical tests of model generalisabilty, respectively. Standard deviation and RMSE of the models are the output to test if the model captures the geographical and temporal variation with little overall error. |                                                                                                                                                  
+| ``` hindcast.py ``` |  This script is adaptable to 'hold back' a certain year from test and train sets. The intent is to hindcast and test for overfitting- which are theoretical and practical tests of model generalisabilty, respectively. Standard deviation and RMSE of the models are the output to test if the model captures the geographical and temporal variation with little overall error. |                                                                                                                                                 
+Each of primary basic models with hyper-parameterisation calculate and utilise Shapley values and SHAP visualisations, respectively. These are a tool for investigating feature importance interpreted in full in research documentation (Tomlinson 2021).
 
+# Future Developments
+
+It is accepted by the author that there is a lot of boiler plate code that is beyond theoretical flexibility, and is impractical to maintain. Comments will be made in individual scripts about where this will be developed in the future for the project timescale. Some of the boiler plate is lack of resources and know-how to get the file IO and variables into an appropriate flow of loops and lists, which would be the main facilitator of script shortening. There will also be an attempt to add everything to at least procedural method form and perhaps even object-based form as the author recognises the benefit of organising and actioning from single scripts.
+
+Recommendations to the author for adaptation and improvement are welcome. Please cite this repository if any methods from it are used.
 
 
 
