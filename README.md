@@ -102,7 +102,8 @@ Artefacts of error (straight continuous lines, blocks, or continuously/unrealist
  ## Temperature
 
 | Variable | Script | Requirements |
-|----------|--------|--------------|                                                                                                                         | Diurnal Temperature Range | diurnal_summary_temp.py | Merged temperature netCDF at appropriate directory location, packages as above |
+|----------|--------|--------------|                                                                                                                        
+| Diurnal Temperature Range | diurnal_summary_temp.py | Merged temperature netCDF at appropriate directory location, packages as above |
 | Risk attributable to mosquito transmission component related to temperature | PPM_temp_model.py | As above |
 
 ## Precipitation
