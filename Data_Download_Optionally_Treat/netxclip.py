@@ -4,8 +4,16 @@ import zipfile
 
 import os
 
+# assign name to file for download
+
 zip_file = "download.zip"
+
+# create variable for searching for all netcdf files
+
 endswith = ".nc"
+
+# try and except strategy for choosing netcdf files from zipped file
+
 try:
     with zipfile.ZipFile(zip_file) as z:
         for file in z.namelist():
@@ -16,6 +24,8 @@ except:
     print("Invalid file")
 
 ext = ".nc"
+
+# function to reclip data and create new file with name upon reclipping
 
 dirname = "M:\Diss_data\Final\Humidity\Raw_Data\"
 change = 1
