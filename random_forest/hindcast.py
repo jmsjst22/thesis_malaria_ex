@@ -13,29 +13,17 @@ from sklearn.model_selection import RandomizedSearchCV
 from sklearn.inspection import permutation_importance
 import shap
 
-from feature_selector import FeatureSelector
-
-def evaluate(model, X_test, Y_test):
-    predictions = model.predict(X_test)
-    errors = abs(predictions - Y_test)
-    mape = 100 * np.mean(errors / Y_test)
-    accuracy = 100 - mape
-    print('Model Performance')
-    print('Average Error: {:0.4f} degrees.'.format(np.mean(errors)))
-    print('Accuracy = {:0.2f}%.'.format(accuracy))
-
-    return accuracy
-
-
+# Get data
 filepath = ('/home/s1987119/Diss_data/Final/Final_Products/final_outputs/')
 data = pd.read_csv(filepath+'FINAL_RT_WO_ref_mr.csv')
 
-
+# Define for data of specific year
 y2009 = data.loc[data['year']==2009]
 y2014 =  data.loc[data['year']==2014]
 y2016 =  data.loc[data['year']==2016]
 y2018 =  data.loc[data['year']==2018]
 
+# Define for data of all but a specific year
 eb2009 = data.loc[data['year']!=2009]
 eb2014 = data.loc[data['year']!=2014]
 eb2016 =  data.loc[data['year']!=2016]
@@ -59,16 +47,15 @@ X_Val = y2018[ValX]
 #selecting actual data for the predictions to be validated against
 Y_act = y2018['me_rt_hh_district_prop']
 
-#build model
 rf = RandomForestRegressor(random_state=42)
 #fit model
 rf_fit = rf.fit(X_train,Y_train)
 
-# predict with model fit for all but 2014 on 2014
+# Predict with model fit for all but 2014 on 2014
 Y_validate = rf_fit.predict(X_Val)
 act_std2018 = np.std(Y_act)
 pred_std2018 = np.std(Y_validate)
-#test error between actual data and modelled data for model trained on all but 2014
+# Test error between actual data and modelled data for model trained on all but 2014
 mse = mean_squared_error(Y_validate,Y_act)
 rmse = np.sqrt(mse)
 print(rmse)
