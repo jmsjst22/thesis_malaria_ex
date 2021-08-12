@@ -6,9 +6,11 @@ def download_application():
     data = ct.catalogue.retrieve(
         'satellite-land-cover',
         {
+            # adapt for year selection
             'year': [
                 '2004'
             ],
+            # choose version - will need to be changed once
             'version': [
                 'v2.0.7cds',
             ],
