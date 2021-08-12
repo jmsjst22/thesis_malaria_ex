@@ -4,6 +4,14 @@ import geopandas as gpd
 import xarray as xr
 import rioxarray as rx
 
+'''
+
+Summarising for yearly data 
+
+Similar issue as monthly - code is repetitive and could be condensed into loops and lists using glob and explicit variable definition.
+
+'''
+
 # Import Uganda Districts Shapefile
 
 districts = gpd.read_file('/home/s1987119/Diss_data/Final/Final_Products/DISTRICTS_2018_UTM_36N.shp')
