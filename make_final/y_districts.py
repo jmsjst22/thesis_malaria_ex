@@ -367,6 +367,8 @@ datac = pd.concat(data,axis=1, sort=False, join='inner')
 
 years = [2008,2009,2013,2014,2015,2016,2017,2018,2019]
 
+# Parse into individual dataset
+
 for year in years:
     filter_col = [col for col in datac if col.startswith(str(year))]
     data = datac[filter_col]
