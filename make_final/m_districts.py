@@ -10,7 +10,7 @@ Script for geographical summarisation of environmental risk analysis outputs wit
 
 Improvements could be made on the repeating nature of the code. File I/O could be looped with glob and a single list of variables, filenames and dictionary names.
 List of variables
-
+'''
 # Create empty dictionary for each variable to be populated with variable iteration with districts as keys
 
 t2mean_mo = {}
