@@ -16,6 +16,8 @@ their identical grids and manual- spatial specific download method.
 
 '''
 
+# select directory (please change to suit raw data from download directory)
+
 dirprec = '/home/s1987119/Diss_data/Final/Precipitation/Raw_Data/'
 dirtem ='/home/s1987119/Diss_data/Final/Temperature/Raw_Data/'
 
@@ -24,7 +26,7 @@ def comparse():
     '''
     Function to enable command line arguments in order to specify data variable desired.
     '''
-    # Short description of module
+    # Assign short description of module
     prs = argparse.ArgumentParser(description=("Module merging optionally temperature or precipitation netCDF, adapt for period and filename only."))
     # command line argument which can be optionally added to control logical flow to precipitation, script defaults at temperature
     prs.add_argument("--prec", dest="prec", type=bool, default=False, help="Defines the dataset which to merge")
@@ -37,7 +39,7 @@ cm = comparse()
 
 #Designate if precipitation is true and therefore the required dataset
 if cm.prec == True:
-    #Open netCDF dataset
+    #Open netCDF datasets
     prec4 = xr.open_dataset(dirprec+'tot_prec_04_14_clipped.nc')
     prec14 = xr.open_dataset(dirprec+'tot_prec_15_20_clipped.nc')
     #Concatenate datasets covering area of interest, can be modified to accept any, but only two
@@ -48,6 +50,7 @@ else:
     #Process same for temperature
     temp4 = xr.open_dataset(dirtem+'2m_temp_04_14.nc')
     temp14 = xr.open_dataset(dirtem+'2m_temp_15_21.nc')
+    # contatenate on time dimension
     concat = xr.concat([temp4,temp14], dim='time')
     concat.to_netcdf('/home/s1987119/Diss_data/Final/Temperature/Process/temp_2004_2019.nc')
 pass
