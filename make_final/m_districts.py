@@ -239,3 +239,17 @@ data = [t2datarange_mo,t2datamean_mo,precmean_mo,precstd_mo,precmin_mo,precmax_m
 
 datamo = pd.concat(data,axis=1, sort=False, join='inner')
 
+
+# Get selected years
+
+years = [2008,2009,2013,2014,2015,2016,2017,2018,2019]
+
+# Parse into individual dataset
+
+for year in years:
+    filter_col = [col for col in datac if col.startswith(str(year))]
+    data = datac[filter_col]
+    dataframe = pd.DataFrame(data)
+    dataframe.to_csv('env_csv/'+str(year)+'_env.csv')
+
+
