@@ -22,6 +22,8 @@ Appropriate band designated but adaptable.
 
 '''
 
+# select and display geometry for extent 
+
 var geometry =
     /* color: #98ff00 */
     /* displayProperties: [
@@ -36,7 +38,8 @@ var geometry =
           [35.665427008947, 4.66344804505641]]], null, false);
 
 var geometry = geometry
-var dataset2004 = ee.ImageCollection('MODIS/006/MCD12Q1').filterDate('2004-01-01', '2004-12-31');
+
+# selection of images from variable selected, one per year, date and month arbitrary
 
 print(dataset2004)
 var Image2004 = ee.Image('MODIS/006/MCD12Q1/2004_01_01').select('LC_Type1')
@@ -56,6 +59,8 @@ var Image2017 = ee.Image('MODIS/006/MCD12Q1/2017_01_01').select('LC_Type1')
 var Image2018 = ee.Image('MODIS/006/MCD12Q1/2018_01_01').select('LC_Type1')
 var Image2019 = ee.Image('MODIS/006/MCD12Q1/2019_01_01').select('LC_Type1')
 print(Image2019)
+
+# clip all datasets and export to Gdrive from extent
 
 var data2004 = Image2004.clip(geometry);
 var loss2004 = data2004.visualize({bands: ['LC_Type1']})
