@@ -65,6 +65,7 @@ hmlowmean = (hmlowmean.resample(time= '1M').reduce(np.sum))
 hmhighmin = (hmhighmin.resample(time= '1M').reduce(np.sum))
 hmlowmin = (hmlowmin.resample(time= '1M').reduce(np.sum))
 
+# Summarise risk as featured by binary test into yearly resolution
 hmhighmeany = (hmhighmean.resample(time= '1Y').reduce(np.sum))
 hmlowmeany = (hmlowmean.resample(time= '1Y').reduce(np.sum))
 
