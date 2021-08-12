@@ -1,5 +1,11 @@
 import cdstoolbox as ct
 
+'''
+
+Script to download temperature- adapt for variable only for precipitation
+
+'''
+
 # establish connection and function needed
 
 @ct.application(title='Download data')
