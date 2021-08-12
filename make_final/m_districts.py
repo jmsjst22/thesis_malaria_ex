@@ -1,10 +1,17 @@
 import os
 import pandas as pd
-import matplotlib.pyplot as plot
-import seaborn as sns
 import geopandas as gpd
 import xarray as xr
 import rioxarray as rx
+
+''' 
+
+Script for geographical summarisation of environmental risk analysis outputs with districts of Uganda shapefile dataset.
+
+Improvements could be made on the repeating nature of the code. File I/O could be looped with glob and a single list of variables, filenames and dictionary names.
+List of variables
+
+# Create empty dictionary for each variable to be populated with variable iteration with districts as keys
 
 t2mean_mo = {}
 t2range_mo = {}
@@ -46,10 +53,11 @@ min_Hum_High = {}
 min_Hum_Low = {}
 humrange_mo = {}
 
-
+# Define variable for shapefile of Uganda districts
 
 districts = gpd.read_file('/home/s1987119/Diss_data/Final/Final_Products/DISTRICTS_2018_UTM_36N.shp')
 
+# Import datasets containing environmental risk variables
 
 ms_temp = rx.open_rasterio('/home/s1987119/Diss_data/Final/Final_Products/temperature/Monthly_temperature.nc', decode_coords='all')
 ms_prec = rx.open_rasterio('/home/s1987119/Diss_data/Final/Final_Products/precipitation/monthly_total_precip.nc', decode_coords='all')
@@ -70,7 +78,7 @@ ms_prec_risk = rx.open_rasterio('/home/s1987119/Diss_data/Final/Final_Products/p
 
 districts = districts.to_crs('epsg:4326')
 
-
+# Write netCDF coordinate reference system
 
 ms_temp = ms_temp.rio.write_crs(4326)
 ms_temp_br = ms_temp_br.rio.write_crs(4326)
@@ -87,6 +95,7 @@ ms_prec_risk = ms_prec_risk.rio.write_crs(4326)
 
 ms_hum = ms_hum.rio.write_crs(4326)
 
+# Loop through district indexes for the data variable of each dataset
 
 for idx,district in districts.iterrows():
     t2mean_mo[district.DName2018]=ms_temp.monthly_mean.rio.clip([district.geometry]).mean(dim=['x','y']).values
@@ -131,6 +140,9 @@ for idx,district in districts.iterrows():
     humrange_mo[district.DName2018]=ms_hum.Monthly_range.rio.clip([district.geometry]).max(dim=['x','y']).values
 
 
+# Make pandas dataframes of dictionaries populated with individual variable data- single pandas dataframe per variable with multiple data over years
+# Transpose dataframes for columns = variable, rows = district /years 
+
 t2datamean_mo = pd.DataFrame(t2mean_mo,index=(ms_temp.time)).T
 t2datarange_mo = pd.DataFrame(t2range_mo,index=(ms_temp.time)).T
 t2br_data_mean_mo = pd.DataFrame(t2br_mean_mo,index=(ms_temp_br.time)).T
@@ -170,6 +182,8 @@ mean_Hum_Low = pd.DataFrame(mean_Hum_Low,index=(ms_hum.time)).T
 min_Hum_High = pd.DataFrame(min_Hum_High,index=(ms_hum.time)).T
 min_Hum_Low = pd.DataFrame(min_Hum_Low,index=(ms_hum.time)).T
 humrange_mo  = pd.DataFrame(humrange_mo,index=(ms_hum.time)).T
+
+# add suffix to identify variable (previously just a time stamp)
 
 t2datamean_mo = t2datamean_mo.add_suffix('_monthly_temp_mean')
 t2datarange_mo = t2datarange_mo.add_suffix('_monthly_temp_range')
@@ -212,6 +226,8 @@ min_Hum_High= min_Hum_High.add_suffix('_monthly_hum_MiIH')
 min_Hum_Low= min_Hum_Low.add_suffix('_monthly_hum_MiIL')
 humrange_mo= humrange_mo.add_suffix('_monthly_hum_range')
 
+# Make list of variables to concatenate into dataframe for all
+
 data = [t2datarange_mo,t2datamean_mo,precmean_mo,precstd_mo,precmin_mo,precmax_mo, t2br_data_mean_mo, t2ega_data_mean_mo, t2egfe_data_mean_mo, t2mor_data_max_mo,
         t2mor_data_min_mo, t2mosdev_data_mean_mo, t2oa_data_mean_mo, t2vec_data_mean_mo,
         DpMth_0,DpMth_1_25,DpMth_25_50,DpMth_50_100,DpMth_100_200,DpMth_200_300,DpMth_300_400,
@@ -219,30 +235,7 @@ data = [t2datarange_mo,t2datamean_mo,precmean_mo,precstd_mo,precmin_mo,precmax_m
         hummean_mo, humrisk_mo,humstd_mo,mean_Hum_High,mean_Hum_Low
         ,min_Hum_High,min_Hum_Low,humrange_mo]
 
+# Concatenate with an inner join to retain all matching districts (all present)
+
 datamo = pd.concat(data,axis=1, sort=False, join='inner')
 
-years = [2005,2006,2008,2009,2010,2011,2013,2014,2015,2016,2017,2018]
-
-for year in years:
-    filter_col = [col for col in datamo if col.startswith(str(year))]
-    data = datamo[filter_col]
-    dataframe = pd.DataFrame(data)
-    dataframe.to_csv('env_csv/'+str(year)+'_env_month.csv')
-
-
-
-#data = pd.merge(t2datamean,t2datarange,on='DName2018',how='inner').T
-
-#print(mean.head())
-
-#bigger loop automated for each variable
-#validate the clip
-
-
-
-
-
-
-
-
-#print(district.geometry, district.DName2018)
