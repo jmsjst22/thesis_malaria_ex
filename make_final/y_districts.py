@@ -1,17 +1,14 @@
 import os
 import pandas as pd
-import matplotlib.pyplot as plot
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
-import seaborn as sns
 import geopandas as gpd
-import earthpy as et
 import xarray as xr
 import rioxarray as rx
 
+# Import Uganda Districts Shapefile
 
 districts = gpd.read_file('/home/s1987119/Diss_data/Final/Final_Products/DISTRICTS_2018_UTM_36N.shp')
 
+# Import all netcdf data to variable
 
 ys_temp = rx.open_rasterio('/home/s1987119/Diss_data/Final/Final_Products/temperature/Yearly_temperature.nc', decode_coords='all')
 ys_prec = rx.open_rasterio('/home/s1987119/Diss_data/Final/Final_Products/precipitation/yearly_total_precip.nc', decode_coords='all')
@@ -37,6 +34,8 @@ ys_temp_diu = rx.open_rasterio('/home/s1987119/Diss_data/Final/Final_Products/te
 
 ys_prec_risk = rx.open_rasterio('/home/s1987119/Diss_data/Final/Final_Products/precipitation/yearlyprecip_risk.nc',decode_coords ='all')
 
+# Set CRS of all data
+
 districts = districts.to_crs('epsg:4326')
 
 ys_temp = ys_temp.rio.write_crs(4326)
@@ -61,6 +60,8 @@ ys_mwet2mdry = ys_mwet2mdry.rio.write_crs(4326)
 ys_mdry2mwet = ys_mdry2mwet.rio.write_crs(4326)
 ys_devnat = ys_devnat.rio.write_crs(4326)
 ys_difnat = ys_difnat.rio.write_crs(4326)
+
+# Make empty dictionaries to populate with data of variables from dataset variables (netCDF)
 
 t2mean = {}
 t2range = {}
@@ -104,7 +105,6 @@ mean_Hum_Low_y = {}
 min_Hum_High_y = {}
 min_Hum_Low_y = {}
 
-
 any_ch_lu = {}
 fl_lu = {}
 mdevmnat_lu = {}
@@ -121,6 +121,7 @@ mdry2mwet_dict = {}
 devnat_dict = {}
 difnat_lu = {}
 
+# Loop through districts index of each dataset and clip with districts geometry extracting out summary statistics (mainly mean) of area.
 
 for idx,district in districts.iterrows():
    t2mean[district.DName2018]=ys_temp.yearly_mean.rio.clip([district.geometry]).mean(dim=['x','y']).values
@@ -166,17 +167,30 @@ for idx,district in districts.iterrows():
    min_Hum_High_y[district.DName2018]=ys_hum.high_days_min.rio.clip([district.geometry]).mean(dim=['x','y']).values
    min_Hum_Low_y[district.DName2018]=ys_hum.low_days_min.rio.clip([district.geometry]).mean(dim=['x','y']).values
 
+   
+# Make empty dataframe for variable data with geographies
 LUC_any_dataframe = pd.DataFrame()
+# Make an empty list for variable keys of datasets if meeting criteria
 keylist = []
+# Define key list as all variables and dimensions of dataset
 luckeys = ys_lucac.variables.keys()
+# Loop through keys
 for k in luckeys:
+    # Select only keys with data (not dimensions or metadata variables)
     if k.startswith('ANY'):
+        # Append this to initial empty keylist
         keylist.append(k)
+        # Loop through districts
         for idx,district in districts.iterrows():
+            # Clip all data by districts of each variable in the dataset
             any_ch_lu[district.DName2018]=ys_lucac[k].rio.clip([district.geometry]).sum(dim=['x','y']).values
+        # Append all data from above  clipping loop to single dataset
         LUC_any_dataframe=LUC_any_dataframe.append(any_ch_lu, ignore_index=True)
+# Keylist is index         
 idx  = pd.Index(keylist)
+# Set index
 LUC_any_dataframe = LUC_any_dataframe.set_index(idx)
+#Transpose for rows as districts, variable data as columns
 LUC_any_dataframe = LUC_any_dataframe.T
 
 LUC_fl_dataframe = pd.DataFrame()
@@ -225,6 +239,8 @@ for idx,district in districts.iterrows():
     LUC_difnat_dataframe = pd.DataFrame(difnat_lu).T
 
 
+# Add suffix to identify variables in column
+   
 LUC_any_dataframe = LUC_any_dataframe.add_suffix('_yearly_LUCany')
 LUC_fl_dataframe = LUC_fl_dataframe.add_suffix('_yearly_LUCfl')
 LUC_mdevmnat_dataframe = LUC_mdevmnat_dataframe.add_suffix('_yearly_LUC_mdevmnat')
@@ -325,6 +341,7 @@ mean_Hum_Low_y=mean_Hum_Low_y.add_suffix('_yearly_hum_mean_ld')
 min_Hum_High_y=min_Hum_High_y.add_suffix('_yearly_hum_min_hd')
 min_Hum_Low_y=min_Hum_Low_y.add_suffix('_yearly_hum_min_ld')
 
+# List data variables
 
 data = [t2datarange,t2datamean,precmean,precstd,precmin,precmax,LUC_any_dataframe,LUC_fl_dataframe,
         LUC_mdevmnat_dataframe, LUC_mwet2mdry_dataframe, LUC_devnat_dataframe, LUC_difnat_dataframe,
@@ -334,9 +351,13 @@ data = [t2datarange,t2datamean,precmean,precstd,precmin,precmax,LUC_any_datafram
         DpYear_400_500,DpYear_500_600,DpYear_600_700,DpYear_700_800,DpYear_800_900,DpYear_900_1000,DpYear_1000,
         hummean_y,hummax_y,hummin_y,humrange_y,mean_Hum_High_y,mean_Hum_Low_y,min_Hum_Low_y,min_Hum_High_y,t2diurnal_data_risk]
 
+# Concatenate data variables
+
 datac = pd.concat(data,axis=1, sort=False, join='inner')
 
-years = [2005,2006,2008,2009,2010,2011,2013,2014,2015,2016,2017,2018]
+# Get selected years
+
+years = [2008,2009,2013,2014,2015,2016,2017,2018,2019]
 
 for year in years:
     filter_col = [col for col in datac if col.startswith(str(year))]
@@ -345,20 +366,3 @@ for year in years:
     dataframe.to_csv('env_csv/'+str(year)+'_env.csv')
 
 
-
-
-#data = pd.merge(t2datamean,t2datarange,on='DName2018',how='inner').T
-
-#print(mean.head())
-
-#bigger loop automated for each variable
-#validate the clip
-
-
-
-
-
-
-
-
-#print(district.geometry, district.DName2018)
